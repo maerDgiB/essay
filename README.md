@@ -7,7 +7,7 @@
 [多终端适配的方法](https://github.com/sixwinds/blog/issues/20)，文章中讲了一个动态设置`rem`的方法，会根据不同`initial-scale`的值进行缩放。
 
 
-## Event Loop
+## Event Loop(事件循环)
 找到看的资料如下（部分需翻墙查看）：
 1. [Tasks, microtasks, queues and schedules](https://jakearchibald.com/2015/tasks-microtasks-queues-and-schedules/)
 2. [Philip Roberts: What the heck is the event loop anyway? | JSConf EU 2014](https://www.youtube.com/watch?v=8aGhZQkoFbQ)
