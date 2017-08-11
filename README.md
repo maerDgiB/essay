@@ -14,5 +14,6 @@
 3. [Philip Roberts: Help, I’m stuck in an event-loop](https://vimeo.com/96425312)
 4. [JavaScript 运行机制详解：再谈Event Loop](http://www.ruanyifeng.com/blog/2014/10/event-loop.html?bsh_bid=983729729)
 5. [前端基础进阶（十二）：深入核心，详解事件循环机制](http://www.jianshu.com/p/12b9f73c5a4f)
+6. [Help! I’m Stuck in an Event Loop! - Philip Roberts](https://vimeo.com/101437011)
 
 目前来说，对`Event loop`有了一部分感性的认识，还是有一种暧昧的感觉，需要反复重看以上的文章与视频
