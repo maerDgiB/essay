@@ -138,6 +138,22 @@ import  ConnectedHome, {Home} from './Home/index';
 
 因为返回的是Cheerio对象，能够分析静态HTML结构但是怎么样分析自行google，因为emzyme这里用的就是第三方库，而且渲染完的`wrapper`能使用的API并不多，因为已经是第三方的东西，目前最大的BUG。
 
+#### 建议
+
+可以分别把同样的组件三种不同的形式渲染一下
+
+```javascript
+const Connectednode = <Provider store={store}><ConnectedHome /></Provider>
+const Shallowwrapper = shallow(Connectednode)
+const  mountWrapper = mount(Connectednode)
+const renderWrapper = render(Connectednode)
+console.log("shallow",Shallowwrapper.debug())
+console.log("mount",mountWrapper.debug())
+console.log("render",renderWrapper)
+```
+
+
+
 
 ### 参考文章
 
