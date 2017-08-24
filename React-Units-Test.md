@@ -68,6 +68,75 @@ describe('Enzyme Render', () => {
 })
 ```
 
+### 使用react-redux & immutable
+
+在这样的情况下，如果单元测试的组件中含有一个`connect`函数包裹的组件，建议使用浅渲染的模式去测试，当然可以使用深度渲染，但是一定会报错，查后可得你一定要包裹一层的`<Provider>`还要引入`store`
+
+```javascript
+// 这个结构才能经得住三种渲染
+
+	import Home from './Home/index';
+	const Connectednode = <Provider store={store}><Home /></Provider>
+    const Connectedwrapper = shallow(
+        Connectednode
+    )
+
+    it('Home component render 12', () => {
+        const div = document.createElement('div');
+        ReactDOM.render(Connectednode, div);
+        // logs <Connect(Home) />
+        //console.log(Connectedwrapper.debug())
+    });
+```
+
+这样的方式是可是渲染connect函数返回的组件，但是我只想测试**原本的Home**组件，只需要将Home组件一同`export`出来，方法如下：
+
+```javascript
+// ./Home/index.js
+export class Home extends React.component{}
+export default connect()(Home)
+// test.js
+import  ConnectedHome, {Home} from './Home/index';
+```
+
+当然，可能测试的Home组件会依赖store的部分的state以及dispatch方法。如果单元测试中没有提供对应的数据和方法则会报错，第一种方法就是原封不动的将数据和方法传入给组件，就像这样：
+
+```javascript
+	const state = store.getState()
+    const props = {
+           addResult:state.getIn(['HomeReducer']),
+           dispatch:store.dispatch
+    }
+    const node = <Home {...props} />
+    const wrapper = shallow(node)
+```
+
+第二种方式，是根据对单元测试概念测出来的，因为是单元测试，而且是对每一个组件进行测试，所以只要提供相对应的数据和方法就好了，仅仅是将这个组件看为一个模块测试其的功能是否走的通便好，所以这样处理`props`对象，如下：
+
+```javascript
+ import {Map} form "immutable"
+ const props = {
+           // 如果你的项目里用了immutable 
+           addResult:Map({data:999999}),
+           dispatch:()={}
+    }
+```
+
+这样就可以测试了。
+
+### 三种测试
+
+#### 浅渲染（建议使用）
+
+对测试的组件只要提供对应的数据方法就行。
+
+#### 深度渲染（明白坑点在使用）
+
+因为是DOM结构的渲染，连同子组件一同的渲染出来（各个渲染的概念要多看几遍），所以一定要提供所有的依赖。
+
+#### 静态渲染（不建议使用）
+
+因为返回的是Cheerio对象，能够分析静态HTML结构但是怎么样分析自行google，因为emzyme这里用的就是第三方库，而且渲染完的`wrapper`能使用的API并不多，因为已经是第三方的东西，目前最大的BUG。
 
 
 ### 参考文章
@@ -77,4 +146,8 @@ describe('Enzyme Render', () => {
 [React 测试入门教程](http://www.ruanyifeng.com/blog/2016/02/react-testing-tutorial.html)
 
 [Enzyme笔记](http://blog.leanote.com/post/haitang.reg@qq.com/Enzyme%E7%AC%94%E8%AE%B0)
+
+[Writing Tests Redux](http://redux.js.org/docs/recipes/WritingTests.html)
+
+[Emzyme](http://airbnb.io/enzyme/index.html)
 
