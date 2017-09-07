@@ -19,3 +19,6 @@
 8. [并发模型与事件循环](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/EventLoop)
 
 目前来说，对`Event loop`有了一部分感性的认识，还是有一种暧昧的感觉，需要反复重看以上的文章与视频
+
+## 对协议的收集
+1.[TCP协议的三次握手和四次分手](https://github.com/jawil/blog/issues/14)
