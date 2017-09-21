@@ -22,3 +22,7 @@
 
 ## 对协议的收集
 1.[TCP协议的三次握手和四次分手](https://github.com/jawil/blog/issues/14)
+
+
+## JSONP
+[目前找到讲述JSONP最好的文章](http://www.cnblogs.com/dowinning/archive/2012/04/19/json-jsonp-jquery.html)
