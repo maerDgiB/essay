@@ -1,5 +1,9 @@
 # 文章收集
 
+## 错误提示相关
+1. [JS相关的报错以及相对应的解决方案](https://davidwalsh.name/fix-javascript-errors)
+2. [Node下怎样记录BUG的原因-captureStackTrace](http://lucasfcosta.com/2017/02/17/JavaScript-Errors-and-Stack-Traces.html?utm_source=javascriptweekly&utm_medium=email)
+
 ## 移动端知识收集
 [meta标签含义，关于viewport&像素](https://github.com/sixwinds/blog/issues/19)，文章中讲解到了viewport的来源以及像素在移动端的比例问题，还有`initial-scale`属性的含义。
 
